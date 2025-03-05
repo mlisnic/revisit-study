@@ -34,7 +34,7 @@ export default {
     guide:
       'The WHO surveillance data is collected in order to track the dominant strains of flu. This allows scientists to identify the most effective vaccine type for the season and allocate resources according to need.',
     intended:
-      'Based on the chart above, flu infections in this season peaked in week 5.',
+      'Based on the chart above, the vaccine for this season should include both A and B strains of flu as both are common.',
     unintended:
       'Based on the chart above, flu infections got potentially misclassified as COVID.',
   },
