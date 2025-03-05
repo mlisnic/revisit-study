@@ -1,0 +1,9 @@
+{
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.0.2/src/parser/GlobalConfigSchema.json",
+  "configsList": ["intended-insight"],
+  "configs": {
+    "intended-insight": {
+      "path": "intended-insight/config.json"
+    }
+  }
+}
