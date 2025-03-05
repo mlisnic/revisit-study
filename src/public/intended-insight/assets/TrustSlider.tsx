@@ -12,6 +12,7 @@ function TrustSlider({
       <Slider
         pl={50}
         pr={50}
+        size="xl"
         value={trustValue}
         onChange={setTrustValue}
         styles={{
@@ -22,6 +23,11 @@ function TrustSlider({
             textAlign: 'center',
             color: 'black',
           },
+          mark: {
+            backgroundColor: 'var(--mantine-color-gray-2)',
+            borderColor: 'var(--mantine-color-gray-2)',
+          },
+          bar: { backgroundColor: 'var(--mantine-color-gray-2)' },
         }}
         marks={[
           { label: 'Not at all trustworthy', value: 0 },

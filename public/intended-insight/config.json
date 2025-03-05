@@ -62,7 +62,7 @@
         {
           "id": "trustwhy",
           "prompt": "Why or why not?",
-          "type": "shortText"
+          "type": "longText"
         }
       ]
     },

@@ -139,6 +139,7 @@ function ChartViewer({ parameters, setAnswer }: StimulusParams<any>) {
             <Stack>
               <Textarea
                 label="What observations and conclusions can you make based on this data? Please enter in the box below, one observation per line:"
+                withAsterisk
                 autosize
                 size="md"
                 fw={500}
@@ -153,6 +154,10 @@ function ChartViewer({ parameters, setAnswer }: StimulusParams<any>) {
             <Stack>
               <Text size="md" fw={500}>
                 Would you consider this visualization trustworthy?
+                <Text span c="red">
+                  {' '}
+                  *
+                </Text>
               </Text>
               <TrustSlider
                 trustValue={trustValue}
@@ -166,6 +171,10 @@ function ChartViewer({ parameters, setAnswer }: StimulusParams<any>) {
               <Text mt="md">
                 Consider the two statements below. For each, do you agree that
                 the data above supports the statement?
+                <Text span c="red">
+                  {' '}
+                  *
+                </Text>
               </Text>
               <Text fw={700} mt="md">
                 {exampleIntended}

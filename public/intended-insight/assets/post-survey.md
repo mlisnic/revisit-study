@@ -6,7 +6,9 @@ After completing the questions below and clicking the "Next" button, you will be
 
 ## Visualization Labels
 
-You may have noticed that some visualizations had text labels below them.
+You may have noticed that some visualizations had text labels underneath.
+
+<img src="./assets/box.jpg" alt="Image of a stimulus with a red box and arrow pointing at the yellow label box below the visualization" width="600"/>
 
 We've shown you 3 different types of labels:
 
