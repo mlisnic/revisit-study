@@ -1,0 +1,6103 @@
+{
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.0.2/src/parser/StudyConfigSchema.json",
+  "studyMetadata": {
+    "title": "Insights in Data Visualizations",
+    "version": "0.1",
+    "authors": ["VDL"],
+    "date": "2025-02-12",
+    "description": "A study examining what insights people make based on data visualizations.",
+    "organizations": ["University of Utah"]
+  },
+  "uiConfig": {
+    "contactEmail": "maxim.lisnic@utah.edu",
+    "helpTextPath": "intended-insight/assets/help.md",
+    "logoPath": "revisitAssets/revisitLogoSquare.svg",
+    "withProgressBar": true,
+    "autoDownloadStudy": false,
+    "autoDownloadTime": 5000,
+    "sidebar": false,
+    "urlParticipantIdParam": "PROLIFIC_PID",
+    "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [https://app.prolific.com/submissions/complete?cc=XXX](https://app.prolific.com/submissions/complete?cc=XXX)"
+  },
+  "baseComponents": {
+    "chart-stimulus": {
+      "type": "react-component",
+      "path": "intended-insight/assets/ChartViewer.tsx",
+      "nextButtonText": "Next chart",
+      "response": [
+        {
+          "id": "response",
+          "prompt": "",
+          "hidden": true,
+          "type": "reactive"
+        }
+      ]
+    },
+    "chart-stimulus-insight": {
+      "type": "react-component",
+      "path": "intended-insight/assets/ChartViewer.tsx",
+      "nextButtonText": "Next",
+      "parameters": { "question": "insight" },
+      "response": [
+        {
+          "id": "insight",
+          "prompt": "",
+          "hidden": true,
+          "type": "reactive"
+        }
+      ]
+    },
+    "chart-stimulus-trust": {
+      "type": "react-component",
+      "path": "intended-insight/assets/ChartViewer.tsx",
+      "nextButtonText": "Next",
+      "parameters": { "question": "trust" },
+      "response": [
+        {
+          "id": "trust",
+          "prompt": "",
+          "hidden": true,
+          "type": "reactive"
+        },
+        {
+          "id": "trustwhy",
+          "prompt": "Why or why not?",
+          "type": "shortText"
+        }
+      ]
+    },
+    "chart-stimulus-agree": {
+      "type": "react-component",
+      "path": "intended-insight/assets/ChartViewer.tsx",
+      "nextButtonText": "Next",
+      "parameters": { "question": "agree" },
+      "response": [
+        {
+          "id": "agree",
+          "prompt": "",
+          "hidden": true,
+          "type": "reactive"
+        }
+      ]
+    }
+  },
+  "components": {
+    "introduction": {
+      "type": "markdown",
+      "path": "intended-insight/assets/introduction.md",
+      "response": [
+        {
+          "id": "prolificId",
+          "prompt": "Please enter your Prolific ID",
+          "required": true,
+          "location": "belowStimulus",
+          "type": "shortText",
+          "placeholder": "Prolific ID",
+          "paramCapture": "PROLIFIC_PID"
+        }
+      ]
+    },
+    "consent": {
+      "type": "markdown",
+      "path": "intended-insight/assets/consent.md",
+      "nextButtonText": "Agree",
+      "response": [
+        {
+          "id": "accept",
+          "prompt": "Do you consent to the study and wish to continue?",
+          "required": true,
+          "requiredValue": "yes",
+          "location": "belowStimulus",
+          "type": "radio",
+          "options": [
+            {
+              "label": "Decline",
+              "value": "no"
+            },
+            {
+              "label": "Accept",
+              "value": "yes"
+            }
+          ]
+        }
+      ]
+    },
+    "post-survey": {
+      "type": "markdown",
+      "path": "intended-insight/assets/post-survey.md",
+      "response": [
+        {
+          "id": "notice",
+          "type": "radio",
+          "location": "belowStimulus",
+          "prompt": "Did you notice a yellow text label in some of your tasks?",
+          "required": true,
+          "options": [
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Yes",
+              "value": "yes"
+            }
+          ]
+        },
+        {
+          "id": "reflection",
+          "prompt": "If so, did the text affect your answers to the survey questions? Why or why not? Explain in 2-3 sentences.",
+          "type": "longText"
+        },
+        {
+          "id": "ideology",
+          "prompt": "In terms of your political views, do you think of yourself as:",
+          "type": "likert",
+          "numItems": 7,
+          "leftLabel": "Very Liberal",
+          "rightLabel": "Very Conservative"
+        }
+      ]
+    },
+    "cdc-none-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "cdc",
+        "textType": "none"
+      }
+    },
+    "cdc-none-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "cdc",
+        "textType": "none"
+      }
+    },
+    "cdc-none-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "cdc",
+        "textType": "none"
+      }
+    },
+    "cdc-warning-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "cdc",
+        "textType": "warning"
+      }
+    },
+    "cdc-warning-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "cdc",
+        "textType": "warning"
+      }
+    },
+    "cdc-warning-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "cdc",
+        "textType": "warning"
+      }
+    },
+    "cdc-counter-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "cdc",
+        "textType": "counter"
+      }
+    },
+    "cdc-counter-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "cdc",
+        "textType": "counter"
+      }
+    },
+    "cdc-counter-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "cdc",
+        "textType": "counter"
+      }
+    },
+    "cdc-guide-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "cdc",
+        "textType": "guide"
+      }
+    },
+    "cdc-guide-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "cdc",
+        "textType": "guide"
+      }
+    },
+    "cdc-guide-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "cdc",
+        "textType": "guide"
+      }
+    },
+    "cdc-all-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "cdc",
+        "textType": "all"
+      }
+    },
+    "cdc-all-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "cdc",
+        "textType": "all"
+      }
+    },
+    "cdc-all-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "cdc",
+        "textType": "all"
+      }
+    },
+    "who-none-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "who",
+        "textType": "none"
+      }
+    },
+    "who-none-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "who",
+        "textType": "none"
+      }
+    },
+    "who-none-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "who",
+        "textType": "none"
+      }
+    },
+    "who-warning-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "who",
+        "textType": "warning"
+      }
+    },
+    "who-warning-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "who",
+        "textType": "warning"
+      }
+    },
+    "who-warning-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "who",
+        "textType": "warning"
+      }
+    },
+    "who-counter-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "who",
+        "textType": "counter"
+      }
+    },
+    "who-counter-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "who",
+        "textType": "counter"
+      }
+    },
+    "who-counter-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "who",
+        "textType": "counter"
+      }
+    },
+    "who-guide-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "who",
+        "textType": "guide"
+      }
+    },
+    "who-guide-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "who",
+        "textType": "guide"
+      }
+    },
+    "who-guide-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "who",
+        "textType": "guide"
+      }
+    },
+    "who-all-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "who",
+        "textType": "all"
+      }
+    },
+    "who-all-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "who",
+        "textType": "all"
+      }
+    },
+    "who-all-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "who",
+        "textType": "all"
+      }
+    },
+    "covidnet-none-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "covidnet",
+        "textType": "none"
+      }
+    },
+    "covidnet-none-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "covidnet",
+        "textType": "none"
+      }
+    },
+    "covidnet-none-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "covidnet",
+        "textType": "none"
+      }
+    },
+    "covidnet-warning-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "covidnet",
+        "textType": "warning"
+      }
+    },
+    "covidnet-warning-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "covidnet",
+        "textType": "warning"
+      }
+    },
+    "covidnet-warning-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "covidnet",
+        "textType": "warning"
+      }
+    },
+    "covidnet-counter-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "covidnet",
+        "textType": "counter"
+      }
+    },
+    "covidnet-counter-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "covidnet",
+        "textType": "counter"
+      }
+    },
+    "covidnet-counter-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "covidnet",
+        "textType": "counter"
+      }
+    },
+    "covidnet-guide-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "covidnet",
+        "textType": "guide"
+      }
+    },
+    "covidnet-guide-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "covidnet",
+        "textType": "guide"
+      }
+    },
+    "covidnet-guide-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "covidnet",
+        "textType": "guide"
+      }
+    },
+    "covidnet-all-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "covidnet",
+        "textType": "all"
+      }
+    },
+    "covidnet-all-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "covidnet",
+        "textType": "all"
+      }
+    },
+    "covidnet-all-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "covidnet",
+        "textType": "all"
+      }
+    },
+    "map-none-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "map",
+        "textType": "none"
+      }
+    },
+    "map-none-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "map",
+        "textType": "none"
+      }
+    },
+    "map-none-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "map",
+        "textType": "none"
+      }
+    },
+    "map-warning-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "map",
+        "textType": "warning"
+      }
+    },
+    "map-warning-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "map",
+        "textType": "warning"
+      }
+    },
+    "map-warning-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "map",
+        "textType": "warning"
+      }
+    },
+    "map-counter-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "map",
+        "textType": "counter"
+      }
+    },
+    "map-counter-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "map",
+        "textType": "counter"
+      }
+    },
+    "map-counter-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "map",
+        "textType": "counter"
+      }
+    },
+    "map-guide-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "map",
+        "textType": "guide"
+      }
+    },
+    "map-guide-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "map",
+        "textType": "guide"
+      }
+    },
+    "map-guide-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "map",
+        "textType": "guide"
+      }
+    },
+    "map-all-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "map",
+        "textType": "all"
+      }
+    },
+    "map-all-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "map",
+        "textType": "all"
+      }
+    },
+    "map-all-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "map",
+        "textType": "all"
+      }
+    },
+    "wapo-none-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "wapo",
+        "textType": "none"
+      }
+    },
+    "wapo-none-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "wapo",
+        "textType": "none"
+      }
+    },
+    "wapo-none-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "wapo",
+        "textType": "none"
+      }
+    },
+    "wapo-warning-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "wapo",
+        "textType": "warning"
+      }
+    },
+    "wapo-warning-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "wapo",
+        "textType": "warning"
+      }
+    },
+    "wapo-warning-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "wapo",
+        "textType": "warning"
+      }
+    },
+    "wapo-counter-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "wapo",
+        "textType": "counter"
+      }
+    },
+    "wapo-counter-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "wapo",
+        "textType": "counter"
+      }
+    },
+    "wapo-counter-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "wapo",
+        "textType": "counter"
+      }
+    },
+    "wapo-guide-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "wapo",
+        "textType": "guide"
+      }
+    },
+    "wapo-guide-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "wapo",
+        "textType": "guide"
+      }
+    },
+    "wapo-guide-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "wapo",
+        "textType": "guide"
+      }
+    },
+    "wapo-all-insight": {
+      "baseComponent": "chart-stimulus-insight",
+      "parameters": {
+        "exampleId": "wapo",
+        "textType": "all"
+      }
+    },
+    "wapo-all-trust": {
+      "baseComponent": "chart-stimulus-trust",
+      "parameters": {
+        "exampleId": "wapo",
+        "textType": "all"
+      }
+    },
+    "wapo-all-agree": {
+      "baseComponent": "chart-stimulus-agree",
+      "parameters": {
+        "exampleId": "wapo",
+        "textType": "all"
+      }
+    }
+  },
+  "sequence": {
+    "order": "fixed",
+    "components": [
+      "introduction",
+      "consent",
+
+      {
+        "order": "latinSquare",
+        "numSamples": 1,
+        "components": [
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-none-insight",
+                  "cdc-none-trust",
+                  "cdc-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-warning-insight",
+                  "cdc-warning-trust",
+                  "cdc-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-counter-insight",
+                  "cdc-counter-trust",
+                  "cdc-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-all-insight",
+                  "wapo-all-trust",
+                  "wapo-all-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-all-insight",
+                  "map-all-trust",
+                  "map-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-all-insight",
+                  "covidnet-all-trust",
+                  "covidnet-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-guide-insight",
+                  "cdc-guide-trust",
+                  "cdc-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-all-insight",
+                  "who-all-trust",
+                  "who-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-none-insight",
+                  "who-none-trust",
+                  "who-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-warning-insight",
+                  "who-warning-trust",
+                  "who-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-guide-insight",
+                  "wapo-guide-trust",
+                  "wapo-guide-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-guide-insight",
+                  "map-guide-trust",
+                  "map-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-counter-insight",
+                  "who-counter-trust",
+                  "who-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-guide-insight",
+                  "covidnet-guide-trust",
+                  "covidnet-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-none-insight",
+                  "covidnet-none-trust",
+                  "covidnet-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-counter-insight",
+                  "wapo-counter-trust",
+                  "wapo-counter-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-warning-insight",
+                  "covidnet-warning-trust",
+                  "covidnet-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-counter-insight",
+                  "map-counter-trust",
+                  "map-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-none-insight",
+                  "map-none-trust",
+                  "map-none-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-warning-insight",
+                  "wapo-warning-trust",
+                  "wapo-warning-agree"
+                ]
+              }
+            ]
+          },
+          {
+            "order": "latinSquare",
+            "components": [
+              {
+                "order": "fixed",
+                "components": [
+                  "cdc-all-insight",
+                  "cdc-all-trust",
+                  "cdc-all-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "who-guide-insight",
+                  "who-guide-trust",
+                  "who-guide-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "covidnet-counter-insight",
+                  "covidnet-counter-trust",
+                  "covidnet-counter-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "map-warning-insight",
+                  "map-warning-trust",
+                  "map-warning-agree"
+                ]
+              },
+              {
+                "order": "fixed",
+                "components": [
+                  "wapo-none-insight",
+                  "wapo-none-trust",
+                  "wapo-none-agree"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+
+      "post-survey"
+    ]
+  }
+}
