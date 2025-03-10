@@ -15,7 +15,7 @@ more about how people select data in visualizations and use them for communicati
 
 #### Tasks
 
-It will take approximately XXXXXXXXXXXX minutes to finish this test.
+It will take approximately 20 minutes to finish this test.
 You will be shown a series of data visualizations.
 Your task is to answer a couple short questions about each visualization.
 We suggest maximizing your browser window as some charts can be on the larger side.
@@ -46,7 +46,7 @@ The data collected in this study is only being used for the present study and no
 
 #### Cost/Payment
 
-You will be compensated $XXXXXXXXXXXX for participating via Prolific.
+You will be compensated $5 for participating via Prolific.
 
 #### Contact
 

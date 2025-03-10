@@ -2,9 +2,9 @@
   "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.0.2/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
     "title": "Insights in Data Visualizations",
-    "version": "0.1",
+    "version": "pilot",
     "authors": ["VDL"],
-    "date": "2025-02-12",
+    "date": "2025-03-10",
     "description": "A study examining what insights people make based on data visualizations.",
     "organizations": ["University of Utah"]
   },
@@ -15,9 +15,10 @@
     "withProgressBar": true,
     "autoDownloadStudy": false,
     "autoDownloadTime": 5000,
+    "windowEventDebounceTime": 1000,
     "sidebar": false,
     "urlParticipantIdParam": "PROLIFIC_PID",
-    "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [https://app.prolific.com/submissions/complete?cc=XXX](https://app.prolific.com/submissions/complete?cc=XXX)"
+    "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [https://app.prolific.com/submissions/complete?cc=CEZ85H3W](https://app.prolific.com/submissions/complete?cc=CEZ85H3W)"
   },
   "baseComponents": {
     "chart-stimulus": {
@@ -121,6 +122,11 @@
           ]
         }
       ]
+    },
+    "help": {
+      "type": "markdown",
+      "path": "intended-insight/assets/help.md",
+      "response": []
     },
     "post-survey": {
       "type": "markdown",
@@ -689,7 +695,7 @@
     "components": [
       "introduction",
       "consent",
-
+      "help",
       {
         "order": "latinSquare",
         "numSamples": 1,
