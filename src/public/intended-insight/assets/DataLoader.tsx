@@ -3,6 +3,7 @@ import who from '../../../../public/intended-insight/assets/charts/who.jpg';
 import covidnet from '../../../../public/intended-insight/assets/charts/covidnet.jpg';
 import wapo from '../../../../public/intended-insight/assets/charts/wapo.jpg';
 import map from '../../../../public/intended-insight/assets/charts/map.png';
+import penguins from '../../../../public/intended-insight/assets/charts/penguin.png';
 
 export default {
   cdc: {
@@ -84,5 +85,21 @@ export default {
       'Based on the chart above, more medical resources should be allocated to states colored in purple than those in yellow.',
     unintended:
       'Based on the chart above, you are more likely to contract COVID in states colored in purple than those in yellow.',
+  },
+  penguins: {
+    image: penguins,
+    title: 'Penguin measurements across species',
+    source:
+      'Data sourced from the Palmer Station, Antarctica, and provided by the seaborn library.',
+    warning:
+      'Avoid over-generalizing conclusions about penguin populations based on this dataset, as it only represents a subset from one research location.',
+    counter:
+      'Keep in mind that penguin behavior and measurements may vary significantly across different regions and environments.',
+    guide:
+      'This dataset provides measurements on three species of penguins found in Antarctica, showing their physical attributes such as bill length, flipper length, and body mass.',
+    intended:
+      'Based on the chart above, we can infer general trends about penguin species from the sample data.',
+    unintended:
+      'Based on the chart above, you may mistakenly think these trends apply to all penguins worldwide.',
   },
 };
