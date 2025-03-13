@@ -12,8 +12,8 @@ You may have noticed that some visualizations had text labels underneath.
 
 We've shown you 3 different types of labels:
 
-1. **Warning**: a label warning you against making a certain conclusion
-2. **Counter**: a label providing a counter-argument to a conclusion
+1. **Warning**: a label warning you against making an erroneous conclusion
+2. **Counter**: a label providing a counter-argument to an erroneous conclusion
 3. **Guide**: a label describing how the authors intended for the chart to be read
 
 ## Questions
