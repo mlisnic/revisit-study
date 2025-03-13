@@ -118,6 +118,7 @@ function ChartViewer({ parameters, setAnswer }: StimulusParams<any>) {
   return (
     <Box maw="1000px">
       <Stack m="md" ml={0}>
+        <Text>Consider the following information slide:</Text>
         <Paper maw="800px" shadow="md" p="md" m="md" withBorder>
           <Stack gap="xs">
             <Text fw={700}>{exampleTitle}</Text>
@@ -127,7 +128,7 @@ function ChartViewer({ parameters, setAnswer }: StimulusParams<any>) {
                 {exampleText}
               </Blockquote>
             )}
-            <Text size="xs" fs="italic" color="gray">
+            <Text size="xs" fs="italic" c="gray">
               {`Source: ${exampleSource}`}
             </Text>
           </Stack>
@@ -138,7 +139,7 @@ function ChartViewer({ parameters, setAnswer }: StimulusParams<any>) {
           <Tabs.Panel value="insight">
             <Stack>
               <Textarea
-                label="What observations and conclusions can you make based on this data? Please enter in the box below, one observation per line:"
+                label="What observations and conclusions can you make based on this slide? Please enter in the box below, one observation per line:"
                 withAsterisk
                 autosize
                 size="md"
@@ -170,7 +171,7 @@ function ChartViewer({ parameters, setAnswer }: StimulusParams<any>) {
             <Stack>
               <Text mt="md">
                 Consider the two statements below. For each, do you agree that
-                the data above supports the statement?
+                the slide above supports the statement?
                 <Text span c="red">
                   {' '}
                   *

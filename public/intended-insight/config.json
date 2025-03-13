@@ -151,7 +151,7 @@
         },
         {
           "id": "reflection",
-          "prompt": "If so, did the text affect your answers to the survey questions? Why or why not? Explain in 2-3 sentences.",
+          "prompt": "Did this text affect your trust in data or agreement with the proposed statements? Why or why not? Explain in 2-3 sentences.",
           "type": "longText"
         },
         {
