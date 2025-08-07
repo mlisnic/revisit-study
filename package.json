@@ -63,7 +63,9 @@
     "vega": "^5.30.0",
     "vega-lite": "^5.23.0",
     "wavesurfer-react": "^3.0.4",
-    "wavesurfer.js": "^7.8.16"
+    "wavesurfer.js": "^7.8.16",
+    "vite": "^5.0.12",
+    "@vitejs/plugin-react-swc": "^3.5.0"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.5",
