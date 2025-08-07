@@ -1,4 +1,4 @@
-_PI: Maxim Lisnic (maxim.lisnic@utah.edu), University of Utah_
+_PI: \[redacted\]_
 
 _Title of Research Study: Communicating With Interactive Data Visualizations_
 
@@ -38,8 +38,7 @@ development of future data exploration platforms.
 Records of your participation in this study will be held
 confidential so far as permitted by law. However, the study
 investigators, the sponsor or its designee and, under certain
-circumstances, the University of Utah Institutional
-Review Board (IRB) will be able to inspect and have access to
+circumstances, the \[redacted\] (IRB) will be able to inspect and have access to
 this data. Any publication or presentation of the data will not
 identify you.
 The data collected in this study is only being used for the present study and not for future research.
@@ -50,11 +49,7 @@ You will be compensated $5 for participating via Prolific.
 
 #### Contact
 
-For more information about this research or about the rights of
-research participants, or in case of research-related injury,
-contact: Maxim Lisnic (maxim.lisnic@utah.edu).
-Contact the Institutional Review Board (IRB) if you have questions regarding your rights as a research participant. Also, contact the IRB if you have questions, complaints or concerns which you do not feel you can discuss with the investigator. The University of Utah IRB may be reached by phone at (801) 581-3655 or by e-mail at irb@hsc.utah.edu.
-You may also contact the Research Participant Advocate (RPA) by phone at (801) 581-3803 or by email at participant.advocate@hsc.utah.edu.
+\[redacted\]
 
 Your participation in this research is voluntary
 Your refusal to participate will not result in any penalty to you

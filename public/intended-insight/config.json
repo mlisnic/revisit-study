@@ -3,13 +3,13 @@
   "studyMetadata": {
     "title": "Insights in Data Visualizations",
     "version": "pilot",
-    "authors": ["VDL"],
+    "authors": ["redacted"],
     "date": "2025-03-10",
     "description": "A study examining what insights people make based on data visualizations.",
-    "organizations": ["University of Utah"]
+    "organizations": ["redacted"]
   },
   "uiConfig": {
-    "contactEmail": "maxim.lisnic@utah.edu",
+    "contactEmail": "redacted",
     "helpTextPath": "intended-insight/assets/help.md",
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
