@@ -7,14 +7,15 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     base: command === 'build' ? env.VITE_BASE_PATH : '/',
-    plugins: [
-      react({ devTarget: 'es2022' }),
-    ],
+    plugins: [react({ devTarget: 'es2022' })],
     resolve: {
       alias: {
         // /esm/icons/index.mjs only exports the icons statically, so no separate chunks are created
         '@tabler/icons-react': '@tabler/icons-react/dist/esm/icons/index.mjs',
       },
+    },
+    preview: {
+      allowedHosts: ['revisit-labels-59faa3eea396.herokuapp.com'],
     },
   };
 });
